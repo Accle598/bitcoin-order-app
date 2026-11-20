@@ -1,19 +1,10 @@
-
 #!/bin/bash
 
-set -e
-
 docker pull zaproxy/zap-stable
+docker run -i zaproxy/zap-stable zap-baseline.py -t "https://accle598.github.io/bitcoin-order-app/" -l PASS > zap_baseline_report.html
 
-mkdir -p zap-reports
-chmod 777 zap-reports
+echo $? > /dev/null
 
-docker run --rm \
-  -v "$(pwd)/zap-reports:/zap/wrk/:rw" \
-  zaproxy/zap-stable \
-  zap-baseline.py \
-  -t "https://accle598.github.io/bitcoin-order-app/" \
-  -l PASS \
-  -r zap_baseline_report.html
+
 
 

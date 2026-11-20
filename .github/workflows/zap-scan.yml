@@ -8,6 +8,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [16.x]
+
     steps:
       - uses: actions/checkout@v2
 
@@ -19,8 +23,8 @@ jobs:
         run: scripts/zap-script.sh
 
       - name: Archive production artifacts
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: zap report
-          path: ./zap-reports/zap_baseline_report.html
+          path: |
+            ./zap_baseline_report.html
