@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zap report
-          path: ./zap_baseline_report.html
+          path: ./zap-reports/zap_baseline_report.html
